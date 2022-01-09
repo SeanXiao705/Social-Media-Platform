@@ -13,7 +13,7 @@ const (
 func readFromES(query elastic.Query, index string) (*elastic.SearchResult, error) {
     client, err := elastic.NewClient(
         elastic.SetURL(ES_URL),
-        elastic.SetBasicAuth("xiaoyuqi", "xiaoyuqi123"))
+        elastic.SetBasicAuth("usename", "password"))
     if err != nil {
         return nil, err
     }
@@ -33,7 +33,7 @@ func readFromES(query elastic.Query, index string) (*elastic.SearchResult, error
 func saveToES(i interface{}, index string, id string) error{
     client, err := elastic.NewClient(
         elastic.SetURL(ES_URL),
-        elastic.SetBasicAuth("xiaoyuqi", "xiaoyuqi123"))
+        elastic.SetBasicAuth("usename", "usename"))
     if err != nil {
         return err
     }
