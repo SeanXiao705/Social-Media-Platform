@@ -13,7 +13,7 @@ const (
 func readFromES(query elastic.Query, index string) (*elastic.SearchResult, error) {
     client, err := elastic.NewClient(
         elastic.SetURL(ES_URL),
-        elastic.SetBasicAuth("usename", "password"))
+        elastic.SetBasicAuth("xiaoyuqi", "xiaoyuqi123"))
     if err != nil {
         return nil, err
     }
@@ -33,7 +33,7 @@ func readFromES(query elastic.Query, index string) (*elastic.SearchResult, error
 func saveToES(i interface{}, index string, id string) error{
     client, err := elastic.NewClient(
         elastic.SetURL(ES_URL),
-        elastic.SetBasicAuth("usename", "usename"))
+        elastic.SetBasicAuth("xiaoyuqi", "xiaoyuqi123"))
     if err != nil {
         return err
     }
@@ -43,5 +43,22 @@ func saveToES(i interface{}, index string, id string) error{
         Id(id).
         BodyJson(i).
         Do(context.Background())
+    return err
+}
+
+func deleteFromES(query elastic.Query, index string) error {
+    client, err := elastic.NewClient(
+        elastic.SetURL(ES_URL),
+        elastic.SetBasicAuth("xiaoyuqi", "xiaoyuqi123"))
+    if err != nil {
+        return err
+    }
+
+    _, err = client.DeleteByQuery().
+        Index(index).
+        Query(query).
+        Pretty(true).
+        Do(context.Background())
+
     return err
 }
